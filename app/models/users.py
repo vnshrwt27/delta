@@ -18,7 +18,7 @@ class User(Base):
 
     # Documents are mapped to their owners
     documents : Mapped[List["Document"]] = relationship(back_populates="owner")
-    # DocumentPermissions are mapped to eac
+    # DocumentPermissions are mapped to each user
     permissions : Mapped[List["DocumentPermission"]] = relationship(back_populates="user")
 
     def __repr__(self) -> str:

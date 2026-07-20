@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import DateTime, ForeignKey, String, Text, UniqueConstraint
+from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.sql import func
 from app.core.database import Base
 
@@ -13,6 +13,7 @@ class Document(Base):
     id : Mapped[int] = mapped_column(primary_key= True, index= True)
     title : Mapped[str] = mapped_column(String(250), default= "Untitled")
     content : Mapped[str] = mapped_column(Text, default="")
+    version: Mapped[int] = mapped_column(Integer, default=0)
     owner_id : Mapped[int] = mapped_column(ForeignKey("users.id"), nullable= False, index=True)
     created_at : Mapped[datetime] = mapped_column(DateTime, server_default= func.now())
     updated_at : Mapped[datetime] = mapped_column(DateTime , onupdate=func.now())
