@@ -1,11 +1,16 @@
+from __future__ import annotations
+
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.sql import func
+
 from app.core.database import Base
 
-from app.models.users import User
+if TYPE_CHECKING:
+    from app.models.users import User
 class Document(Base):
     
     __tablename__ = "documents"
